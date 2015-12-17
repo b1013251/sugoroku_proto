@@ -41,8 +41,8 @@ public class Player : MonoBehaviour {
 			nowGrid = (nowGrid + 1) % (Sugoroku.grids.Length -1 );
 			Vector3 nextGridPos = Sugoroku.grids[nowGrid].transform.position;
 			
-			for (int j = 1; j <= 50; j++) {
-				transform.position = Vector3.Lerp(nowGridPos,nextGridPos, (float)(0.02 * j) );
+			for (int j = 0; j <= 20; j++) {
+				transform.position = Vector3.Lerp(nowGridPos,nextGridPos, (float)(0.05 * j) );
 				yield return null;
 			}
 
