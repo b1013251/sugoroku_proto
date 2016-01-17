@@ -35,14 +35,15 @@ public class Player : MonoBehaviour {
 	//コルーチン
 
 	IEnumerator coRoutineMove(int num) {
+		GetComponent<Animator> ().enabled = true;
 		for(int i = 0; i < num; i ++ ) {
 			//Vector3 nowGridPos = Sugoroku.grids[nowGrid].transform.position;
 			Vector3 nowGridPos = transform.position;
 			nowGrid = (nowGrid + 1) % (Sugoroku.grids.Length -1 );
 			Vector3 nextGridPos = Sugoroku.grids[nowGrid].transform.position;
 			
-			for (int j = 0; j <= 20; j++) {
-				transform.position = Vector3.Lerp(nowGridPos,nextGridPos, (float)(0.05 * j) );
+			for (int j = 0; j <= 50; j++) {
+				transform.position = Vector3.Lerp(nowGridPos,nextGridPos, (float)(0.02 * j) );
 				yield return null;
 			}
 
@@ -50,6 +51,8 @@ public class Player : MonoBehaviour {
 		}
 
 		this.moving = false;
+		
+		GetComponent<Animator> ().enabled = false;
 
 		// ここでイベント発生
 		Debug.Log (this.name + " reach to " + Sugoroku.grids[nowGrid].name);
