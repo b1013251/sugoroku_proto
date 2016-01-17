@@ -35,7 +35,7 @@ public class Player : MonoBehaviour {
 	//コルーチン
 
 	IEnumerator coRoutineMove(int num) {
-		GetComponent<Animator> ().enabled = true;
+		//GetComponent<Animator> ().enabled = true;
 		for(int i = 0; i < num; i ++ ) {
 			Vector3 nowGridPos = transform.position;
 			Sugoroku.nowGrids[Sugoroku.nowPlayer] = (Sugoroku.nowGrids[Sugoroku.nowPlayer] + 1) % (Sugoroku.grids.Length -1 );
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour {
 
 		this.moving = false;
 		
-		GetComponent<Animator> ().enabled = false;
+		//GetComponent<Animator> ().enabled = false;
 
 		// ここでイベント発生
 		Debug.Log (this.name + " reach to " + Sugoroku.grids[Sugoroku.nowGrids[Sugoroku.nowPlayer]].name);
