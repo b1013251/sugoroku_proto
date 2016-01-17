@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{20EE4A0D-84BE-1676-3432-349E31C152DA}</ProjectGuid>
+	<ProjectGuid>{B3431197-79F9-7633-B490-881F82474495}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,22 +45,31 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Dice.cs" />
-     <Compile Include="Assets\Grid.cs" />
-     <Compile Include="Assets\MyCamera.cs" />
-     <Compile Include="Assets\Player.cs" />
-     <Compile Include="Assets\Sugoroku.cs" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
+     <Compile Include="Assets\Script\DataTable.cs" />
+     <Compile Include="Assets\Script\Database.cs" />
+     <Compile Include="Assets\Script\Dice.cs" />
+     <Compile Include="Assets\Script\Grid.cs" />
+     <Compile Include="Assets\Script\MyCamera.cs" />
+     <Compile Include="Assets\Script\Player.cs" />
+     <Compile Include="Assets\Script\PlayerPrefsX.cs" />
+     <Compile Include="Assets\Script\PointUpdater.cs" />
+     <Compile Include="Assets\Script\SqliteDatabase.cs" />
+     <Compile Include="Assets\Script\Sugoroku.cs" />
+     <Compile Include="Assets\Script\answer.cs" />
+     <Compile Include="Assets\Script\choice1.cs" />
+     <Compile Include="Assets\Script\choice2.cs" />
+     <Compile Include="Assets\Script\choice3.cs" />
+     <Compile Include="Assets\Script\choice4.cs" />
+     <Compile Include="Assets\Script\res1.cs" />
+     <Compile Include="Assets\Script\res2.cs" />
+     <Compile Include="Assets\Script\res3.cs" />
+     <Compile Include="Assets\Script\res4.cs" />
+     <Compile Include="Assets\Script\testScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

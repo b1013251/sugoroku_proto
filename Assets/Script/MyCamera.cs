@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MyCamera : MonoBehaviour {
@@ -19,6 +19,7 @@ public class MyCamera : MonoBehaviour {
 		} else {
 			player = Sugoroku.players[0];
 		}
+
 		Vector3 pos = player.transform.position;
 		transform.position = new Vector3 (pos.x, pos.y, -10);
 	}

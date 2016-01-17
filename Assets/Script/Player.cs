@@ -4,16 +4,16 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	//Member
-	public int nowGrid;
+
 	public GameObject sugoroku;
 
 
 	//Flags
 	public bool moving;
+	
 
 	// Use this for initialization
 	void Start () {
-		nowGrid = 0;
 		sugoroku = GameObject.Find ("Sugoroku");
 	}
 	
@@ -37,10 +37,9 @@ public class Player : MonoBehaviour {
 	IEnumerator coRoutineMove(int num) {
 		GetComponent<Animator> ().enabled = true;
 		for(int i = 0; i < num; i ++ ) {
-			//Vector3 nowGridPos = Sugoroku.grids[nowGrid].transform.position;
 			Vector3 nowGridPos = transform.position;
-			nowGrid = (nowGrid + 1) % (Sugoroku.grids.Length -1 );
-			Vector3 nextGridPos = Sugoroku.grids[nowGrid].transform.position;
+			Sugoroku.nowGrids[Sugoroku.nowPlayer] = (Sugoroku.nowGrids[Sugoroku.nowPlayer] + 1) % (Sugoroku.grids.Length -1 );
+			Vector3 nextGridPos = Sugoroku.grids[Sugoroku.nowGrids[Sugoroku.nowPlayer]].transform.position;
 			
 			for (int j = 0; j <= 50; j++) {
 				transform.position = Vector3.Lerp(nowGridPos,nextGridPos, (float)(0.02 * j) );
@@ -55,15 +54,10 @@ public class Player : MonoBehaviour {
 		GetComponent<Animator> ().enabled = false;
 
 		// ここでイベント発生
-		Debug.Log (this.name + " reach to " + Sugoroku.grids[nowGrid].name);
+		Debug.Log (this.name + " reach to " + Sugoroku.grids[Sugoroku.nowGrids[Sugoroku.nowPlayer]].name);
 
 
-		//最後のプレイヤであれば次のターン
-		if (Sugoroku.nowPlayer == Sugoroku.players.Length - 2) {
-			Sugoroku.isTurnChange = true;
-		} else {
-			Sugoroku.isNextPlayer = true;
-		}
+		Sugoroku.isToMoveQuestion = true;
 
 	}
 }

@@ -6,6 +6,8 @@ public class Database : MonoBehaviour {
 	public static string ct,test="問題",a="選択肢1",i="選択肢2",u="選択肢3",e="選択肢4",answer="",res1="",res2="",res3="",res4="";
 	public static int  playerCount=4, ansflg=0 ,j;
 	public static int[] resflg={0,0,0,0}, Correct={-1,-1,-1,-1}; 
+	
+
 	// Use this for initialization
 	void Start () {
 		//変数初期化
@@ -36,9 +38,8 @@ public class Database : MonoBehaviour {
 		if(ansflg==0) response();
 
 		else if(Input.GetKeyUp(KeyCode.Return)) {
-			Pointing();//点数付け処理
-			Debug.Log("うぇえええええええええええええええええええええええええええ");
-			Application.LoadLevel("DBexample");//画面遷移
+			Pointing();//点数付け処
+			Application.LoadLevel("Main");//画面遷移
 		}
 	}
 
@@ -112,15 +113,19 @@ public class Database : MonoBehaviour {
 		}
 	}
 
+
+
 	public static void 	Pointing(){ //点数付け処理
-		int[] playersScore ={0,0,0,0};
-		playersScore = PlayerPrefsX.GetIntArray("playersScore");
+
 		int currentPlayer=PlayerPrefs.GetInt("currentPlayer");
 		for(int i=0;i<playerCount;i++){
-			if(Correct[i]==1) playersScore[i]++;
-			if(Correct[i]== currentPlayer) playersScore[i]+=3;
+			if(Correct[i]==1) PointUpdater.playersScore[i]++;
+			if( i == Sugoroku.nowPlayer && Correct[i] == 1) PointUpdater.playersScore[i]+= 2;
 		}
-		PlayerPrefsX.SetIntArray("playersScore", playersScore);	
+
+
+
+
 		//if(PlayerPrefs.HasKey()) ;
 		//if(Correct==1 )
 		/*for(int i=0;i<playerCount;i++){

@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Sugoroku.cs">
+    <Files>
+      <File FileName="Assets\Script\Sugoroku.cs" Line="130" Column="30" />
+      <File FileName="Assets\Script\MyCamera.cs" Line="23" Column="43" />
+      <File FileName="Assets\Script\Database.cs" Line="120" Column="33" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
