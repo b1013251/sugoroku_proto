@@ -119,9 +119,14 @@ public class Database : MonoBehaviour {
 
 		int currentPlayer=PlayerPrefs.GetInt("currentPlayer");
 		for(int i=0;i<playerCount;i++){
-			if(Correct[i]==1) PointUpdater.playersScore[i]++;
+			if(Correct[i]==1) {
+				PointUpdater.playersScore[i]++;
+				PointUpdater.playersCorrect[i]++;
+			}
 			if( i == Sugoroku.nowPlayer && Correct[i] == 1) PointUpdater.playersScore[i]+= 2;
 		}
+		
+
 
 
 

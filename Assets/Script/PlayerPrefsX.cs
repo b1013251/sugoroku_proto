@@ -4,7 +4,8 @@
  
 using UnityEngine;
 using System;
- 
+
+/*
 public static class PlayerPrefsX
 {
     #region Vector 3
@@ -259,3 +260,4 @@ public static class PlayerPrefsX
  
     #endregion
 }
+*/

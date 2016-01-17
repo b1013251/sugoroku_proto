@@ -3,8 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class PointUpdater : MonoBehaviour {
-
+	
 	public static int[] playersScore = {0,0,0,0};
+	public static int[] playersCorrect = {0,0,0,0};
 	
 	private GameObject t1;
 	private GameObject t2;
@@ -21,9 +22,9 @@ public class PointUpdater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		t1.GetComponent<Text> ().text = "1P " + playersScore [0].ToString () + " Point";
-		t2.GetComponent<Text> ().text = "2P " + playersScore [1].ToString () + " Point";
-		t3.GetComponent<Text> ().text = "3P " + playersScore [2].ToString () + " Point";
-		t4.GetComponent<Text> ().text = "4P " + playersScore [3].ToString () + " Point";
+		t1.GetComponent<Text> ().text = "1P " + playersScore [0].ToString () + " Points";
+		t2.GetComponent<Text> ().text = "2P " + playersScore [1].ToString () + " Points";
+		t3.GetComponent<Text> ().text = "3P " + playersScore [2].ToString () + " Points";
+		t4.GetComponent<Text> ().text = "4P " + playersScore [3].ToString () + " Points";
 	}
 }

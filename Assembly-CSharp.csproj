@@ -45,16 +45,21 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\PlayerPrefsX.cs" />
      <Compile Include="Assets\Script\DataTable.cs" />
      <Compile Include="Assets\Script\Database.cs" />
      <Compile Include="Assets\Script\Dice.cs" />
+     <Compile Include="Assets\Script\FinishButton.cs" />
+     <Compile Include="Assets\Script\GameResult.cs" />
      <Compile Include="Assets\Script\Grid.cs" />
      <Compile Include="Assets\Script\MyCamera.cs" />
      <Compile Include="Assets\Script\Player.cs" />
      <Compile Include="Assets\Script\PlayerPrefsX.cs" />
      <Compile Include="Assets\Script\PointUpdater.cs" />
+     <Compile Include="Assets\Script\Setting.cs" />
      <Compile Include="Assets\Script\SqliteDatabase.cs" />
      <Compile Include="Assets\Script\Sugoroku.cs" />
+     <Compile Include="Assets\Script\Title.cs" />
      <Compile Include="Assets\Script\answer.cs" />
      <Compile Include="Assets\Script\choice1.cs" />
      <Compile Include="Assets\Script\choice2.cs" />

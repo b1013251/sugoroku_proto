@@ -8,7 +8,7 @@ public class Sugoroku : MonoBehaviour {
 	public static GameObject[] grids;
 	public static GameObject[] players;
 	public static int[] nowGrids = {0,0,0,0};
-	public static int restTurn = 21;
+	public static int restTurn = 2;
 
 	//Member
 	public static GameObject turnLabel;
@@ -17,7 +17,7 @@ public class Sugoroku : MonoBehaviour {
 	public static GameObject dice;
 
 	//ControllFlags
-	public static int nowPlayer = 3;
+	public static int nowPlayer = 0;
 	public static bool isDice = false;
 	public static bool isTurnChange = false;
 	public static bool isNextPlayer = false;
@@ -25,14 +25,8 @@ public class Sugoroku : MonoBehaviour {
 
 	//Other
 	private static bool duplicated = false;
-
-	void OnEnable() {
-		Debug.Log ("Duplicated:");
-		Debug.Log (duplicated);
-
-		Debug.Log ("Players");
-		Debug.Log (players.Length);
-	}
+	private int playersCount;
+	
 
 	// Use this for initialization
 	void Start () {
@@ -59,20 +53,29 @@ public class Sugoroku : MonoBehaviour {
 		}
 
 		//Player Init
-
 		Transform[] playersTransArray = GameObject.Find ("Players").GetComponentsInChildren<Transform> ();
 		Player[] playersArray = GameObject.Find ("Players").GetComponentsInChildren<Player> ();
 
 		players = new GameObject[playersTransArray.Length];
 
-		
 		foreach (var obj in playersTransArray) {
 			players [obj.GetSiblingIndex ()] = obj.gameObject;
 		}
-
+	
 		for(int i = 0; i < players.Length - 1 ; i++) {
 			players[i].transform.position = grids[nowGrids[i]].transform.position;
 		}
+
+		//Player Count Init（プレイヤー数を調整）
+		this.playersCount = PlayerPrefs.GetInt("playerCount");
+		if (!duplicated) nowPlayer = playersCount - 1; 
+		for (int i = 3; i >= playersCount; i--) {
+			Debug.Log ("delete" + i.ToString());
+			players[i].SetActive(false);
+		}
+
+		//残りターン数を適用
+		if(!duplicated) restTurn = PlayerPrefs.GetInt ("totalTurn") + 1;
 
 		// ページ遷移されてきたらターンを動かす
 		MoveNextTurn ();
@@ -108,6 +111,16 @@ public class Sugoroku : MonoBehaviour {
 			StartCoroutine ("coRoutineNextPlayer");
 		}
 
+		//ゲーム終了！
+		if (restTurn <= 0) {
+
+			//PlayerPrefs.SetInt("playerCount",playersCount);
+			PlayerPrefsX.SetIntArray ("playersScore"  ,PointUpdater.playersScore);
+			PlayerPrefsX.SetIntArray ("playersCorrect",PointUpdater.playersCorrect);
+
+			StartCoroutine ("coRoutineGameOver");
+		}
+
 	}
 	
 	IEnumerator coRoutineTurnChange() {
@@ -135,11 +148,22 @@ public class Sugoroku : MonoBehaviour {
 		dice.SendMessage ("Roll", players[nowPlayer]);
 	}
 
+	IEnumerator coRoutineGameOver() {
+		turnLabel.GetComponent<Text> ().text = "終了";
+		turnLabel.SetActive (true);
+		
+		yield return new WaitForSeconds(2);
+		
+		turnLabel.SetActive (false);
+		
+		Application.LoadLevel("ResultScene");
+	}
+
 	// ターン遷移
 	private void MoveNextTurn() { 
 		//最後のプレイヤであれば次のターン
 		
-		if (Sugoroku.nowPlayer == Sugoroku.players.Length - 2) {
+		if (Sugoroku.nowPlayer == playersCount -1) {
 			Sugoroku.isTurnChange = true;
 		} else {
 			Sugoroku.isNextPlayer = true;
