@@ -55,7 +55,7 @@ public class Player : MonoBehaviour {
 
 		// ここでイベント発生
 		Debug.Log (this.name + " reach to " + Sugoroku.grids[Sugoroku.nowGrids[Sugoroku.nowPlayer]].name);
-
+	
 
 		Sugoroku.isToMoveQuestion = true;
 

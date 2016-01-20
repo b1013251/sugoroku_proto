@@ -28,7 +28,7 @@ public class GameResult : MonoBehaviour {
 		setStrings (toStringArray (playersScore), GameObject.Find ("playerScore"));
 		
 		// set percentage of correct anser
-		setStrings (toStringArray (calcPercentage ()), GameObject.Find ("correctAnswerPercent"));
+		setStrings (toStringArray (calcPercentage ()) , GameObject.Find ("correctAnswerPercent"));
 	}
 
 	/* Set strings to scene
@@ -74,7 +74,7 @@ public class GameResult : MonoBehaviour {
 	private float[] calcPercentage(){
 		float[] percentages = new float[playerCount];
 		for (int i=0; i<playerCount; i++) {
-			percentages[i] = playersCorrect[i] / (float)totalTurn * playerCount;
+			percentages[i] = playersCorrect[i] / (float)totalTurn / playerCount;
 		}
 		return percentages;
 	}

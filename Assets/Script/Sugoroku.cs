@@ -9,6 +9,7 @@ public class Sugoroku : MonoBehaviour {
 	public static GameObject[] players;
 	public static int[] nowGrids = {0,0,0,0};
 	public static int restTurn = 2;
+	private static bool[] isLost1Turn = {false,false,false,false};
 
 	//Member
 	public static GameObject turnLabel;
@@ -100,13 +101,35 @@ public class Sugoroku : MonoBehaviour {
 		}
 
 		if (isToMoveQuestion) {
-			// 出題シーンに遷移
-			Application.LoadLevel("DBExample");
+			if (lost1Turn ()) {
+				StartCoroutine("coRoutineLose1Turn");
+				isLost1Turn[nowPlayer] = true;
+			} else {
+				Application.LoadLevel("DBExample");
+				isToMoveQuestion = false;
+			}
 			isToMoveQuestion = false;
 		}
 
 		if (isNextPlayer) {
 			nowPlayer = (nowPlayer + 1) % players.Length ;
+
+			//休み適用
+			while( isLost1Turn[nowPlayer] ) {
+				isLost1Turn[nowPlayer] = false;
+				nowPlayer ++ ;
+
+				// 超過したらターンチェンジ
+				if ( (nowPlayer ) >= playersCount )  {
+
+					Debug.Log ("ちぇえええええええええええええええええええええええええええええええん");
+					nowPlayer = -1;
+					isNextPlayer = false;
+					isTurnChange = true;
+					return ;
+				}
+			}
+
 			isNextPlayer = false;
 			StartCoroutine ("coRoutineNextPlayer");
 		}
@@ -122,6 +145,18 @@ public class Sugoroku : MonoBehaviour {
 		}
 
 	}
+
+	IEnumerator coRoutineLose1Turn() {
+		turnLabel.GetComponent<Text> ().text = "一回休み！";
+		turnLabel.SetActive (true);
+		
+		yield return new WaitForSeconds(2);
+		
+		turnLabel.SetActive (false);
+
+		Application.LoadLevel("DBExample");
+	}
+
 	
 	IEnumerator coRoutineTurnChange() {
 		restTurn--;
@@ -168,6 +203,16 @@ public class Sugoroku : MonoBehaviour {
 		} else {
 			Sugoroku.isNextPlayer = true;
 		}
+	}
+
+	//一回休み？ 4 8 13 19
+	private bool lost1Turn() {
+		if (nowPlayer == -1)
+			return false;
+
+		int g = nowGrids [nowPlayer];
+		return (g == 4 || g == 8 || g == 13 || g == 19 ) ? true : false ;
+		//return (g % 2) == 0 ? true : false;
 	}
 }
 
